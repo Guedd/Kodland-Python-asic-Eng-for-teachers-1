@@ -1,27 +1,67 @@
-def quene_move(first_column, first_row, second_column, second_row):
-    moves = [first_column, first_row, second_column, second_row]
+# The fuction works fine
+#cyou can check the code on github:
+# https://github.com/Guedd/Kodland-Python-asic-Eng-for-teachers-1/blob/main/N3.py
 
-    if value_check(moves):
-        if (first_row == second_row) and (first_column != second_column):
-            return True # verticall move, pass!!
 
-        elif (first_row != second_row) and (first_column == second_column):
-            return True # horizontal move, pass!!
+class chess:
+    def init(self, first_column, first_row, second_column, second_row):
+        self.first_column = first_column
+        self.first_row = first_row
+        self.second_column = second_column
+        self.second_row = second_row
 
-        if abs(first_row - second_row) == abs(first_column - second_column):
-            return True
+    def get_pos(self):
+        print("The current Position is:\nRow number: {}\nColumn number:{}"
+        .format(self.first_row, self.first_column))
+        print("The next Position is:\nRow number: {}\nColumn number:{}"
+        .format(self.second_row, self.second_column))
+    
+    
+    def set_pos(self, fC, fR, sC, sR):
+        self.first_column = fC
+        self.first_row = fR
+        self.second_column = sC
+        self.second_row = sR
+
+    def set_pos_man(self):
+        self.first_column = int(input('What is the value of the First Column(1-8)?'))
+        self.first_row = int(input('What is the value of the First Row(1-8)?'))
+        self.second_column = int(input('What is the value of the Second Column(1-8)?'))
+        self.second_row = int(input('What is the value of the Second Row(1-8)?'))
+
+    def get_all_pos(self):
+        return [self.first_column, self.first_row, self.second_column, self.second_row]
+
+    def quene_move(self):
+        if self.value_check():
+            if (self.first_row == self.second_row) and (self.first_column != self.second_column):
+                return True # verticall move, pass!!
+
+            elif (self.first_row != self.second_row) and (self.first_column == self.second_column):
+                return True # horizontal move, pass!!
+
+            if abs(self.first_row - self.second_row) == abs(self.first_column - self.second_column):
+                return True # diagonal move, pass!!
  
-    # Opponent is safe
-    return False
-def value_check(moves_list):
-    values = list(map(lambda x: (x > 0) and (x < 9), moves_list))
-    return True if values else False
+        return False # move wrong!!
+
+    def value_check(self):
+        values = list(map(lambda x: (x > 0) and (x < 9), self.get_all_pos()))
+        return True if values else False # one or all the values great then 8 or less then 0
 
 
 if __name__ == '__main__':
-    fr, fc = 1, 4
-    sr, sc = 5, 8
-    if quene_move(fc, fr, sc, sr):
+    test = chess()
+    ques = input('If you want to test it click on ENTER, or try default by click on another button!!!')
+    if ques == "":
+        test.set_pos_man()
+    else:
+        fr, fc = 1, 4
+        sr, sc = 5, 8
+        test.set_pos(fc, fr, sc, sr)
+        test.get_pos()
+
+    if test.quene_move():
         print("Yes")
     else:
         print("No")
