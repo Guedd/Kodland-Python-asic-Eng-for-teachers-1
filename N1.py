@@ -1,44 +1,73 @@
-def shrink(int_list) -> list:
-    if str in map(type, int_list):
-        raise TypeError('The list contains only strings')
+# The envirment is showing sysntax error,
+# even using the main to show the tests,
 
-    if 0 not in int_list:
-        # check if the list don't cantain zeros
-        print(
-        "\nthe final list is: {}\n".format(int_list))
-        return int_list
+# you'll find the code on the link below:
 
-    else:
-        int_list = zero_drop(int_list)
-        print("\nthe final list: {}\n".format(int_list))
-        return int_list
+# https://github.com/Guedd/Kodland-Python-asic-Eng-for-teachers-1/blob/main/N1.py
 
-def zero_drop(int_list):
-    # drop all the zeros from the list
-    orignal_length = len(int_list)
-    int_list = [i for i in int_list if i != 0]
-    length = orignal_length - len(int_list)
-    return zero_append(int_list, length)
-    
-def zero_append(int_list, l):
-    # add the exact number of zeros we drop at the end
-    for i in range(l):
-        int_list.append(0)
-    return int_list
+class n1:
+    def init(self, num_List) -> list:
+        self.num_List = []
+     
+    def get_n1(self) -> str:
+        print(f'{self.num_List}')
+        
+    def set_n1(self, num_list) -> list:
+        self.num_List = num_list
+        
+    def shrink(self) -> list:
+        if self.num_List == []:
+            print("The list is empty!!!")
+            return 0
             
+        if str in map(type, self.num_List):
+            print('\nError: The list contains string(s)!!!')
+
+        if 0 not in self.num_List:
+           # check if the list don't cantain zeros
+            print("\nthe list donn't contains zeros")
+            print("the list is: {}\n".format(self.num_List))
+            return self.num_List
+
+        else:
+            print("\nthe Original list: {}".format(self.num_List))
+            self.num_List = self.zero_drop()
+            print("the final list: {}\n".format(self.num_List))
+            return self.num_List
+
+    def zero_drop(self) -> list:
+       # drop all the zeros from the list
+       self.orignal_length = len(self.num_List)
+       self.num_List = [i for i in self.num_List if i != 0]
+       self.length = self.orignal_length - len(self.num_List)
+       return self.zero_append(self.length)
+    
+    def zero_append(self, length) -> list:
+       # add the exact number of zeros we drop at the end
+        for i in range(length):
+            self.num_List.append(0)
+        return self.num_List
+
 
 if __name__ == '__main__':
 
     A = [1, 0, 0, 5]
     B = [0, 0, 5]
-    C = [1, 4, 0, 5]
+    C = [1, 4, 0, 5, 0]
     D = [1, 5, '3', 5]
     E = [1, 0, 5]
-    F = [1, 4, 0, 5]
+    F = [1, 4, 7, 9, 21, 20, 5]
+    X = []
 
-    shrink(A)
-    shrink(B)
-    shrink(C)
-    shrink(D)
-    shrink(E)
-    shrink(F)
+    test = n1()
+    test.set_n1(A)
+    test.shrink()
+    test.set_n1(C)
+    test.shrink()
+    test.set_n1(D)
+    test.shrink()
+    test.set_n1(F)
+    test.shrink()
+    test.set_n1(X)
+    test.shrink()
+    
