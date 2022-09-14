@@ -1,25 +1,39 @@
-def poem():
-    
-    lines = int(input('How many lines will there be?'))
-    poem_list = list()
+# The code works very well,
+# it shows syntaxerror, for a reason that i don't know
+# to check the code in github:
+# https://github.com/Guedd/Kodland-Python-asic-Eng-for-teachers-1/blob/main/N2.py
 
-    for line in range(lines):
-        enter = str(input(f'\nEnter the line {line}: '))
-        poem_list.append(enter)
+class poems:
+
+    def init(self, poem_list):
+        self.poem_list = poem_list
+
+    def get_poem(self):
+        print("\nThe poem conatins: {lines}, Enjoy it\n: {poem}"
+        .format(lines = len(self.poem_list), poem = self.poem_list))
     
-    vowel_num = cal(poem_list, "aeiou")
-    constante_num = cal(poem_list, "bcdfgjklmnpqstvxzwyrh")
+    def set_poem(self):
+        self.lines = int(input('How many lines will there be?'))
+        self.poem_list = list()
+        for line in range(self.lines):
+            self.enter = str(input('\nEnter the line {}: '.format(line + 1)))
+            self.poem_list.append(self.enter)
+
+        self.get_poem()
+        self.vowel_num = self.cal("aeiou")
+        self.constante_num = self.cal("bcdfgjklmnpqstvxzwyrh")
     
-    print('\nNumber of vowels: {}\nNumber of consonants: {}'
-    .format(vowel_num, constante_num))
+        print('\nNumber of vowels: {}\nNumber of consonants: {}'
+       .format(self.vowel_num, self.constante_num))
     
-def cal(str_list, alph_list) -> int:
-    total = list()
-    for sentence in str_list:
-        nums = sum([*map(sentence.lower().count, alph_list)])
-        total.append(nums)
+    def cal(self, alph_list):
+        self.total = list()
+        for sentence in self.poem_list:
+            self.nums = sum([*map(sentence.lower().count, alph_list)])
+            self.total.append(self.nums)
         
-    return sum(total)
+        return sum(self.total)
 
 if __name__ == '__main__':
-    poem()
+    test = poems()
+    test.set_poem()
